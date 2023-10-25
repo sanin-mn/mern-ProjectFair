@@ -8,7 +8,7 @@ function Footer() {
             <div className="footer d-flex justify-content-evenly w-100">
                 <div className="wesite">
                     <h4 style={{color: 'black'}}>
-                    <i class="fa-brands fa-stack-overflow" ></i>{' '}
+                    <i className="fa-brands fa-stack-overflow" ></i>{' '}
                         Project Fair
                     </h4>
                     <p style={{ color: '#6F6F6F' }}>Lorem ipsum dolor sit ametb <br /> consectetur adipisicing elit. <br /> Odio consectetur tempora maiores dolore.</p>
