@@ -14,13 +14,13 @@ function Footer() {
                     <p style={{ color: '#6F6F6F' }}>Lorem ipsum dolor sit ametb <br /> consectetur adipisicing elit. <br /> Odio consectetur tempora maiores dolore.</p>
                 </div>
                 <div className="links d-flex flex-column">
-                    <h4>Links</h4>
+                    <h4 className='text-dark'>Links</h4>
                     <Link to={'/'} style={{ textDecoration: 'none', color: 'white' }}>Home</Link>
                     <Link to={'/projects'} style={{ textDecoration: 'none', color: 'white' }}>Projects</Link>
-                    <Link to={'/'} style={{ textDecoration: 'none', color: 'white' }}>Contact</Link>
+                    <Link to={'/dashboard'} style={{ textDecoration: 'none', color: 'white' }}>Dashboard</Link>
                 </div>
                 <div className="guides d-flex flex-column">
-                    <h4>Guides</h4>
+                    <h4 className='text-dark'>Guides</h4>
                     <a href="https://react.dev/" style={{ textDecoration: 'none', color: 'white' }}>React</a>
                     <a href="https://getbootstrap.com/" style={{ textDecoration: 'none', color: 'white' }}>Bootstrap</a>
                     <a href="https://nodejs.org/en" style={{ textDecoration: 'none', color: 'white' }}>Node</a>
