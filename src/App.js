@@ -11,7 +11,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path='/' element={<PFHome Login/>} />
+        <Route path='/' element={<PFHome />} />
         <Route path='/login' element={<Auth/>} />
         <Route path='/register' element={<Auth register/>} />
         <Route path='/dashboard' element={<Dashboard/>} />

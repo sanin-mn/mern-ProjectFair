@@ -14,6 +14,7 @@ function Auth({ register }) {
                     <div className="row align-items-center">
                         <div className="col-lg-6">
                             <img src="https://image.freepik.com/free-vector/login-concept-illustration_114360-739.jpg" className='rounded-start w-100' alt="" />
+         
                         </div>
                         <div className="col-lg-6">
                             <div className="d-flex align-items-center flex-column">

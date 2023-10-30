@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import home from '../Assets/home.png'
 import HomeProjects from '../Components/HomeProjects'
 import { Link } from 'react-router-dom'
 
 
-function PFHome({Login}) {
-    const isLoggedIn = Login ? true : false
+function PFHome() {
+    const [isLoggedIn,setLoggedIn] = useState(true)
   return (
     <>
     {/* Landing section */}
@@ -20,8 +20,8 @@ function PFHome({Login}) {
                     
                     {
                         isLoggedIn?
-                        <Link to={'/dashboard'} className='btn btn-warning'>Manageyour project</Link>:
-                        <Link to={'/login'}><button className='btn btn-info'>Getting Started</button></Link>
+                        <Link to={'/dashboard'} className='btn btn-warning'>Manage your project</Link>:
+                        <Link to={'/login'} className='btn btn-info'>Getting Started </Link>
                     }
                 </Col>
                 <Col sm={12} md={6}>
