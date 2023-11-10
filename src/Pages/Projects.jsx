@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from '../Components/Header'
 import { Col, Row } from 'react-bootstrap'
 import ProjectCard from '../Components/ProjectCard'
 
 function Projects() {
+
+
   return (
     <div>
       {/* header */}
