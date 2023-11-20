@@ -6,19 +6,21 @@ import { Row, Col } from 'react-bootstrap';
 
 
 
-function ProjectCard() {
+function ProjectCard({project}) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return (
         <>
-            <Card className='shadow p-3 mb-5 btn' onClick={handleShow}>
-                <Card.Img variant="top" src={primg} />
+            { project &&
+                <Card className='shadow p-3 mb-5 btn' onClick={handleShow}>
+                <Card.Img variant="top" src={primg} style={{width:'500px'}} />
                 <Card.Body>
-                    <Card.Title>Project Title</Card.Title>
+                    <Card.Title>{project.title}</Card.Title>
                 </Card.Body>
             </Card>
+            }
 
             <Modal size='lg' show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -30,15 +32,15 @@ function ProjectCard() {
                             <img className='img-fluid' src={primg} alt="pgimg" />
                         </Col>
                         <Col>
-                            <h2>Project Title</h2>
-                            <p>Project Overview</p>
-                            <p>Languages used: <span className='ms-2 fw-bold'>HTML,CSS,JS,React</span></p>
+                            <h2>{project.title}</h2>
+                            <p>{project.overview}</p>
+                            <p>Languages used: <span className='ms-2 fw-bold'>{project.language}</span></p>
                         </Col>
                     </Row>
                     <div className='mt-3'>
-                        <a href="https://github.com/sanin-mn/travel" rel="noreferrer" target='_blank' className='btn me-5'><i className="fa-brands fa-github "></i></a>
+                        <a href={project.github} rel="noreferrer" target='_blank' className='btn me-5'><i className="fa-brands fa-github "></i></a>
 
-                        <a href="https://github.com/sanin-mn/travel" rel="noreferrer" target='_blank' className='btn me-5'><i className="fa-solid fa-link "></i></a>
+                        <a href={project.website} rel="noreferrer" target='_blank' className='btn me-5'><i className="fa-solid fa-link "></i></a>
                     </div>
                 </Modal.Body>
             </Modal>
