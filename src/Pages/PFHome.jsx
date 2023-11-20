@@ -9,7 +9,7 @@ function PFHome() {
     const [isLoggedIn,setLoggedIn] = useState(false)
 
     useEffect(()=>{
-        if(localStorage.getItem("existingUser")){
+        if(sessionStorage.getItem("token")){
             setLoggedIn(true)
         }else{
             setLoggedIn(false)

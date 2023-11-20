@@ -6,13 +6,15 @@ import { AddProjectAPI } from '../services/allApis';
 
 function AddProjects() {
     const [show, setShow] = useState(false);
+    const [token,setToken] = useState("")
     const [projectDetails,setProjectDetails] = useState({
         title:"",language:"",github:"",website:"",overview:"",image:"",userId:""
     })
     const [preview,setPreview] = useState("")
     useEffect(()=>{
-        if(localStorage.getItem("existingUser")){
+        if(localStorage.getItem("existingUser") && sessionStorage.getItem("token")){
           setProjectDetails({...projectDetails,userId:JSON.parse(localStorage.getItem("existingUser"))._id})
+          setToken(sessionStorage.getItem("token"))
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
       },[])
@@ -44,13 +46,23 @@ function AddProjects() {
             reqBody.append("github",github)
             reqBody.append("website",website)
             reqBody.append("overview",overview)
-            reqBody.append("image",image)
+            reqBody.append("projectImage",image)
             reqBody.append("userId",userId)
             const reqHeader = {
-                "Content-Type":"multipart/form-data"
+                "Content-Type":"multipart/form-data","Authorization":`Bearer ${token}`
             }
             const result = await AddProjectAPI(reqBody,reqHeader)
             console.log(result);
+            if(result.status===200){
+                toast.success(`Project ${result.data.title} added successfully...`)
+                setProjectDetails({
+                    title:"",language:"",github:"",website:"",overview:"",image:""
+                })
+                handleClose()
+            }else{
+                toast.warning(result.response.data)
+                console.log(result);
+            }
         }
     }
     return (
