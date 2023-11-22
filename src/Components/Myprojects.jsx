@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import AddProjects from './AddProjects'
 import { userProjectAPI } from '../services/allApis'
-import { addProjectResponseContext } from '../Context/ContextShare'
+import { addProjectResponseContext, editProjectResponseContext } from '../Context/ContextShare'
 import EditProject from './EditProject'
 
 function Myprojects() {
     const {addProjectResponse,setAddProjectResponse} = useContext(addProjectResponseContext)
+    const { editProjectResponse, setEditProjectResponse } = useContext(editProjectResponseContext)
 
     const [projects, setProjects] = useState([])
     const [token, setToken] = useState("")
@@ -30,7 +31,7 @@ function Myprojects() {
         if(token){
             getUserProjects()
         }
-    },[token,addProjectResponse])
+    },[token,addProjectResponse,editProjectResponse])
 
     return (
         <div className='card shadow p-2'>

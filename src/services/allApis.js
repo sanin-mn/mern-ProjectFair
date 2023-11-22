@@ -30,3 +30,8 @@ export const homeProjectsAPI = async ()=>{
 export const allProjectsAPI = async (header)=>{
   return await commonAPI("GET",`${BASEURL}/projects/all`,"",header)
 } 
+
+// edit projects
+export const editProjectAPI = async (projectId,reqBody,reqHeader)=>{
+  return await commonAPI("PUT",`${BASEURL}/project/edit/${projectId}`,reqBody,reqHeader)
+}
