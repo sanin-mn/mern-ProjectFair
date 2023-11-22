@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import AddProjects from './AddProjects'
 import { userProjectAPI } from '../services/allApis'
+import { addProjectResponseContext } from '../Context/ContextShare'
+import EditProject from './EditProject'
 
 function Myprojects() {
+    const {addProjectResponse,setAddProjectResponse} = useContext(addProjectResponseContext)
+
     const [projects, setProjects] = useState([])
     const [token, setToken] = useState("")
     useEffect(() => {
@@ -26,7 +30,7 @@ function Myprojects() {
         if(token){
             getUserProjects()
         }
-    },[token])
+    },[token,addProjectResponse])
 
     return (
         <div className='card shadow p-2'>
@@ -42,7 +46,7 @@ function Myprojects() {
                     <div className="border d-flex align-items-center text-primary rounded p-2 mb-3">
                         <h5>{project?.title}</h5>
                         <div className="icons ms-auto">
-                            <button className='btn me-2'><i class="fa-solid fa-edit"></i></button>
+                            <EditProject displayData={project}/>
                             <a className='btn me-2' href={project?.github} target='_blank' rel="noreferrer" ><i class="fa-brands fa-github"></i></a>
                             <button className='btn me-2'><i class="fa-solid fa-trash"></i></button>
                         </div>

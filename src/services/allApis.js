@@ -29,4 +29,4 @@ export const homeProjectsAPI = async ()=>{
 // all projects
 export const allProjectsAPI = async (header)=>{
   return await commonAPI("GET",`${BASEURL}/projects/all`,"",header)
-}
+} 

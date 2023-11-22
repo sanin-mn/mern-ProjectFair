@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card';
 import primg from '../Assets/project.png'
 import Modal from 'react-bootstrap/Modal';
 import { Row, Col } from 'react-bootstrap';
+import { BASEURL } from '../services/baseUrl';
 
 
 
@@ -14,8 +15,8 @@ function ProjectCard({project}) {
     return (
         <>
             { project &&
-                <Card className='shadow p-3 mb-5 btn' onClick={handleShow}>
-                <Card.Img variant="top" src={primg} style={{width:'500px'}} />
+                <Card className='shadow p-3 mb-5 btn' onClick={handleShow} >
+                <Card.Img  variant="top" src={project?.projectImage?`${BASEURL}/uploads/${project.projectImage}`:primg}  />
                 <Card.Body>
                     <Card.Title>{project.title}</Card.Title>
                 </Card.Body>
@@ -29,7 +30,7 @@ function ProjectCard({project}) {
                 <Modal.Body>
                     <Row>
                         <Col>
-                            <img className='img-fluid' src={primg} alt="pgimg" />
+                            <img className='img-fluid' src={project?.projectImage?`${BASEURL}/uploads/${project.projectImage}`:primg} alt="pgimg" />
                         </Col>
                         <Col>
                             <h2>{project.title}</h2>
@@ -38,7 +39,7 @@ function ProjectCard({project}) {
                         </Col>
                     </Row>
                     <div className='mt-3'>
-                        <a href={project.github} rel="noreferrer" target='_blank' className='btn me-5'><i className="fa-brands fa-github "></i></a>
+                        <a href={project.github}  rel="noreferrer" target='_blank' className='btn me-5'><i className="fa-brands fa-github "></i></a>
 
                         <a href={project.website} rel="noreferrer" target='_blank' className='btn me-5'><i className="fa-solid fa-link "></i></a>
                     </div>

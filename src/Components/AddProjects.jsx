@@ -1,10 +1,13 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect, useContext } from 'react'
 import { Modal, Button } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AddProjectAPI } from '../services/allApis';
+import { addProjectResponseContext } from '../Context/ContextShare';
 
 function AddProjects() {
+    const {addProjectResponse,setAddProjectResponse} = useContext(addProjectResponseContext)
+
     const [show, setShow] = useState(false);
     const [token,setToken] = useState("")
     const [projectDetails,setProjectDetails] = useState({
@@ -58,6 +61,7 @@ function AddProjects() {
                 setProjectDetails({
                     title:"",language:"",github:"",website:"",overview:"",image:""
                 })
+                setAddProjectResponse(result.data)
                 handleClose()
             }else{
                 toast.warning(result.response.data)
