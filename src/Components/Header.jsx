@@ -1,9 +1,16 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Header({insideDashboard}) {
+  const navigate = useNavigate()
+  const handleLogout = () =>{
+    sessionStorage.removeItem("token")
+    localStorage.removeItem("existingUser")
+    localStorage.removeItem("Role")
+    navigate('/')
+  }
   return (
     <div>
         <Navbar className="bg-info w-100 position-fixed top-0" style={{zIndex:'1'}}>
@@ -13,7 +20,7 @@ function Header({insideDashboard}) {
           </Navbar.Brand>
           {
             insideDashboard&&
-            <div className='d-inline'><button className='btn btn-danger'>Logout <i className="fa-solid fa-right-from-bracket d-inline"></i></button></div>
+            <div className='d-inline'><button onClick={handleLogout} className='btn btn-danger'>Logout <i className="fa-solid fa-right-from-bracket d-inline"></i></button></div>
           }
         </Container>
       </Navbar>
