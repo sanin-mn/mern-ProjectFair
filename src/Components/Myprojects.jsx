@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import AddProjects from './AddProjects'
-import { userProjectAPI } from '../services/allApis'
+import { deleteProjectAPI, userProjectAPI } from '../services/allApis'
 import { addProjectResponseContext, editProjectResponseContext } from '../Context/ContextShare'
 import EditProject from './EditProject'
 
@@ -33,6 +33,19 @@ function Myprojects() {
         }
     },[token,addProjectResponse,editProjectResponse])
 
+    const handleDelete = async (e,id)=>{
+        e.preventDefault()
+        const reqHeader = {
+            "Content-Type": "application/json", "Authorization": `Bearer ${token}`
+        }
+        const result = await deleteProjectAPI(id,reqHeader)
+        if(result.status===200){
+            getUserProjects()
+        }else{
+            alert(result.response.data)
+        }
+    }
+
     return (
         <div className='card shadow p-2'>
             <div className="d-flex">
@@ -49,7 +62,7 @@ function Myprojects() {
                         <div className="icons ms-auto">
                             <EditProject displayData={project}/>
                             <a className='btn me-2' href={project?.github} target='_blank' rel="noreferrer" ><i class="fa-brands fa-github"></i></a>
-                            <button className='btn me-2'><i class="fa-solid fa-trash"></i></button>
+                            <button className='btn me-2' onClick={(e)=>handleDelete(e,project._id)}><i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
                     )) :

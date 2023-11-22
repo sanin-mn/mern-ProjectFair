@@ -5,13 +5,14 @@ import ProjectCard from '../Components/ProjectCard'
 import { allProjectsAPI } from '../services/allApis'
 
 function Projects() {
+  const [searchKey,setSearchKey] = useState("")
   const [allProjects, setAllProjects] = useState([])
 
   const getAllProjects = async (token) => {
     const reqHeader = {
       "Content-Type": "application/json", "Authorization": `Bearer ${token}`
     }
-    const result = await allProjectsAPI(reqHeader)
+    const result = await allProjectsAPI(searchKey,reqHeader)
     if (result.status === 200) {
       setAllProjects(result.data)
     } else {
@@ -26,7 +27,7 @@ function Projects() {
     }else{
       alert("Please Login")
     }
-  }, [])
+  }, [searchKey])
 
   return (
     <div>
@@ -38,7 +39,7 @@ function Projects() {
         {/* search */}
         <div className='d-flex mt-5 justify-content-center w-100 mb-5'>
           <div className="d-flex align-items-center border rounded w-50">
-            <input className='form-control' placeholder='Search by technologies' />
+            <input onChange={e=>setSearchKey(e.target.value)} className='form-control' placeholder='Search by technologies' />
             <i className="fa-solid fa-magnifying-glass"></i>
           </div>
         </div>
